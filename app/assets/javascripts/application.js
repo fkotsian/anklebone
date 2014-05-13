@@ -21,3 +21,30 @@
 //= require_tree ../templates
 //
 //= require_tree .
+
+(function(root) {
+  var PT = root.PT = (root.PT || {})  ;
+
+  PT.initialize = function () {
+    PT.Photo.fetchByUserId(CURRENT_USER_ID, function(){
+      PT.showPhotosIndex();
+    });
+
+  };
+
+  PT.showPhotosIndex = function() {
+    var listView = new PT.PhotosListView();
+    var formView = new PT.PhotoFormView();
+    var renderedListView = listView.render();//PT.Photo.all);
+    var renderedFormView = formView.render();
+    $('#content').html(renderedListView);
+    $('#content').append(renderedFormView);
+  };
+
+  PT.showPhotoDetail = function (photo) {
+    var detailView = new PT.PhotoDetailView(photo);
+    var renderedDetailView = detailView.render();
+    $('#content').html(renderedDetailView);
+  }
+
+})(this);

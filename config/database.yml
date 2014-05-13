@@ -1,6 +1,7 @@
 development:
   adapter: postgresql
   database: photo_tagger_dev
+  username: appacademy
   host: localhost
   pool: 5
   timeout: 5000
